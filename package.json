@@ -4,9 +4,11 @@
   "description": "Bot para WhatsApp para o combate a notícias falsas (fake news).",
   "main": "dist/app.js",
   "repository": "https://github.com/buscafatos/bot-whatsapp.git",
-  "author": "Busca Fatos",
+  "author": "Busca Fatos <buscafatos@gmail.com> (https://buscafatos.com.br/)",
   "license": "MIT",
   "dependencies": {
+    "class-transformer": "^0.5.1",
+    "reflect-metadata": "^0.1.13",
     "venom-bot": "^4.3.3"
   },
   "devDependencies": {
@@ -25,7 +27,8 @@
     "lint": "eslint src/**/*.ts",
     "lint:fix": "yarn lint --fix",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon -x ts-node src/app.ts",
+    "dev": "nodemon src/app.ts",
+    "debug": "ts-node src/app.ts",
     "build": "yarn lint && rimraf dist/ && tsc",
     "start": "yarn build && node dist/app.js"
   }

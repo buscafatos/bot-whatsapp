@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { create } from 'venom-bot';
 import { onMessage } from './message';
 import { onIncomingCall } from './call';
@@ -5,7 +6,7 @@ import { onStateChange } from './state';
 
 async function bootstrap() {
     const client = await create({
-        session: 'Busca Fatos WhatsApp Bot',
+        session: `${process.env.INSTANCE_ID}`,
         addBrowserArgs: ['--disable-dev-shm-usage'],
         disableSpins: true,
         headless: true,
