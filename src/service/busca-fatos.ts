@@ -1,5 +1,5 @@
 import { plainToInstance } from "class-transformer";
-import { SearchResult } from "model/search-result";
+import { SearchResult } from "../model/search-result";
 
 export class BuscaFatos {
     static urlBuscaFatosApi = process.env.URL_BUSCA_FATOS;
