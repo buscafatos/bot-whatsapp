@@ -17,6 +17,8 @@
     "overrides": [],
     "rules": {
         "no-extra-semi": "error",
-        "semi": "error"
+        "semi": "error",
+        "no-return-await": "error",
+        "no-useless-return": "error"
     }
 }
