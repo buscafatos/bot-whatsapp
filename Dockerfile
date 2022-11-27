@@ -4,9 +4,9 @@ RUN apt-get update && apt-get install libnss3 chromium -y
 
 WORKDIR /app
 
-COPY package.json yarn.lock ./
-COPY dist ./dist
+COPY . .
 
 RUN yarn install --prod
+RUN yarn build
 
 ENTRYPOINT [ "node", "dist/app.js" ]
