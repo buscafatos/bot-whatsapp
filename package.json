@@ -4,7 +4,7 @@
   "description": "Bot para WhatsApp para o combate a notícias falsas (fake news).",
   "main": "dist/app.js",
   "repository": "https://github.com/buscafatos/bot-whatsapp.git",
-  "author": "Busca Fatos <buscafatos@gmail.com> (https://buscafatos.com.br/)",
+  "author": "Busca Fatos <contato@buscafatos.com.br> (https://buscafatos.com.br/)",
   "license": "MIT",
   "dependencies": {
     "class-transformer": "^0.5.1",
@@ -30,6 +30,9 @@
     "dev": "nodemon src/app.ts",
     "debug": "ts-node src/app.ts",
     "build": "yarn lint && rimraf dist/ && tsc",
-    "start": "yarn build && node dist/app.js"
+    "start": "yarn build && node dist/app.js",
+    "docker:build": "docker build -t buscafatos/bot-whatsapp .",
+    "docker:run": "docker run --env-file .env buscafatos/bot-whatsapp",
+    "docker:start": "yarn docker:build && docker:run"
   }
 }

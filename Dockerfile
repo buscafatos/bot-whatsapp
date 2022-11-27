@@ -1,6 +1,6 @@
-FROM node:18
+FROM node:18-alpine
 
-RUN apt-get update && apt-get install libnss3 chromium -y
+RUN apk add --no-cache nss chromium
 
 WORKDIR /app
 
@@ -8,5 +8,7 @@ COPY . .
 
 RUN yarn install --prod
 RUN yarn build
+
+RUN rm -rf src/
 
 ENTRYPOINT [ "node", "dist/app.js" ]
