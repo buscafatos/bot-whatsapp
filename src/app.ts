@@ -10,6 +10,13 @@ async function bootstrap() {
         addBrowserArgs: ['--disable-dev-shm-usage'],
         disableSpins: true,
         headless: true,
+        logQR: false,
+        catchQR: (qrCode, asciiQR, attempt, urlCode) => {
+            if (process.env.REVERSE_QRCODE)
+                console.log(asciiQR.split('\n').reverse().join('\n'));
+            else
+                console.log(asciiQR);
+        }
     });
 
     // Catch ctrl+C
