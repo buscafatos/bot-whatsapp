@@ -56,5 +56,5 @@ async function onMessageTextGroup(client: Whatsapp, message: Message): Promise<v
 
     const result = await BuscaFatos.search(searchTerm);
 
-    return reply(client, message.from, result, replyId);
+    return reply(client, message.chatId, result, replyId);
 }
