@@ -50,7 +50,7 @@ async function onMessageTextGroup(client: Whatsapp, message: Message): Promise<v
         searchTerm = quotedMessage.body;
         replyId = quotedMessage.id;
     } else {
-        searchTerm = message.body.substring(0, 14).trim();
+        searchTerm = message.body.substring(14).trim();
         replyId = message.id;
     }
 
