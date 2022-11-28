@@ -27,7 +27,7 @@ export class BuscaFatos {
         searchResult.items?.forEach(item => {
             reply += `${item.title}\n`;
             reply += `Link: ${item.link}\n`;
-            reply += `Fonte: ${item.source}\n`;
+            reply += `Fonte: ${item.source}\n\n`;
         });
         return reply;
     }
