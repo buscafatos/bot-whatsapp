@@ -13,6 +13,8 @@ export class BuscaFatos {
             }
         });
 
+        if (!response.ok) return 'Não consegui realizar a busca neste momento.';
+
         const searchResult = plainToInstance(SearchResult, await response.json());
 
         console.info(`Encontrado(s) ${searchResult.totalResults} resultado(s).`);
@@ -29,6 +31,7 @@ export class BuscaFatos {
             reply += `Link: ${item.link}\n`;
             reply += `Fonte: ${item.source}\n\n`;
         });
+
         return reply;
     }
 }
