@@ -47,10 +47,11 @@ async function onMessageTextGroup(client: Whatsapp, message: Message): Promise<v
 
     if (message.quotedMsgObj) {
         const quotedMessage = await client.getMessageById(message.chat.lastReceivedKey._serialized);
+
         searchTerm = quotedMessage.body;
         replyId = quotedMessage.id;
     } else {
-        searchTerm = message.body.substring(14).trim();
+        searchTerm = message.body.substring(message.body.indexOf(' ')).trim();
         replyId = message.id;
     }
 
