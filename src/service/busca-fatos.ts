@@ -15,14 +15,20 @@ export class BuscaFatos {
 
         const searchResult = plainToInstance(SearchResult, await response.json());
 
-        let reply = `${searchResult.items?.length} ocorrência(s) encontrada(s)\n\n`;
+        console.info(`Encontrado(s) ${searchResult.totalResults} resultado(s).`);
+
+        return this.formatMessage(searchResult);
+    }
+
+    private static formatMessage(searchResult: SearchResult) {
+        let reply = `Busca: ${searchResult.searchTerms}\n`;
+        reply += `Total de resultados: ${searchResult.totalResults}\n\n`;
 
         searchResult.items?.forEach(item => {
-            reply += `${item.title}\n${item.link}\n\n`;
+            reply += `${item.title}\n`;
+            reply += `Link: ${item.link}\n`;
+            reply += `Fonte: ${item.source}\n`;
         });
-
-        console.info(`Resultado da pesquisa: ${reply}`);
-
         return reply;
     }
 }

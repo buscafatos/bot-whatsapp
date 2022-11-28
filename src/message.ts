@@ -20,20 +20,29 @@ export async function reply(client: Whatsapp, to: string, message: string, quote
 export async function onMessage(client: Whatsapp, message: Message): Promise<void> {
     if (!message.body) return;
 
+    if (message.isGroupMsg && !message.mentionedJidList.includes(message.to)) return;
+
     if (message.isMedia || message.isMMS) {
-        console.log('Rejeitando mensagem de mídia.');
+        console.info('Rejeitando mensagem de mídia.');
         return sendText(client, message.from, 'Ainda não suporto esse tipo de mensagem :)');
     }
 
-    return onMessageText(client, message);
+    if (message.isGroupMsg)
+        return onMessageTextGroup(client, message);
+
+    return onMessageTextPrivate(client, message);
 }
 
-async function onMessageText(client: Whatsapp, message: Message): Promise<void> {
+async function onMessageTextPrivate(client: Whatsapp, message: Message): Promise<void> {
     const result = await BuscaFatos.search(message.body);
 
-    if (message.isGroupMsg && message.mentionedJidList.includes(message.to)) {
-        return reply(client, message.from, result, message.chat.lastReceivedKey._serialized);
-    }
-
     return sendText(client, message.from, result);
+}
+
+async function onMessageTextGroup(client: Whatsapp, message: Message): Promise<void> {
+    const quotedMessage = await client.getMessageById(message.chat.lastReceivedKey._serialized);
+
+    const result = await BuscaFatos.search(quotedMessage.body);
+
+    return reply(client, message.from, result, quotedMessage.id);
 }
