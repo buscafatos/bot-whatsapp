@@ -40,7 +40,7 @@ async function onMessageTextPrivate(client: Whatsapp, message: Message): Promise
 }
 
 async function onMessageTextGroup(client: Whatsapp, message: Message): Promise<void> {
-    if (!message.quotedMsgObj && !message.body.startsWith(`@${message.to.substring(0, 13)}`)) return;
+    if (!message.quotedMsgObj && !message.body.startsWith(`@${message.to.substring(0, message.to.indexOf('@'))}`)) return;
 
     let searchTerm;
     let replyId;
