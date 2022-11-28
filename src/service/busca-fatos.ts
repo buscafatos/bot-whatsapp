@@ -5,8 +5,6 @@ export class BuscaFatos {
     static urlBuscaFatosApi = process.env.URL_BUSCA_FATOS;
 
     static async search(message: string): Promise<string> {
-        console.info(`Pesquisando por: ${message}`);
-
         const response = await fetch(`${this.urlBuscaFatosApi}/v1/search/${message}?raw=0`, {
             headers: {
                 "accept": "application/json"
@@ -17,7 +15,7 @@ export class BuscaFatos {
 
         const searchResult = plainToInstance(SearchResult, await response.json());
 
-        console.info(`Encontrado(s) ${searchResult.totalResults} resultado(s).`);
+        console.info(`Pesquisando por: "${message}". Encontrado(s) ${searchResult.totalResults} resultado(s).`);
 
         return this.formatMessage(searchResult);
     }
