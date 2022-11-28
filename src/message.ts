@@ -42,17 +42,14 @@ async function onMessageTextPrivate(client: Whatsapp, message: Message): Promise
 async function onMessageTextGroup(client: Whatsapp, message: Message): Promise<void> {
     if (!message.quotedMsgObj && !message.body.startsWith(`@${message.to.substring(0, message.to.indexOf('@'))}`)) return;
 
-    let searchTerm;
-    let replyId;
+    let searchTerm = message.body.substring(message.body.indexOf(' ')).trim();
+    let replyId = message.id;
 
     if (message.quotedMsgObj) {
         const quotedMessage = await client.getMessageById(message.chat.lastReceivedKey._serialized);
 
         searchTerm = quotedMessage.body;
         replyId = quotedMessage.id;
-    } else {
-        searchTerm = message.body.substring(message.body.indexOf(' ')).trim();
-        replyId = message.id;
     }
 
     const result = await BuscaFatos.search(searchTerm);
