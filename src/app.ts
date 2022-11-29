@@ -8,6 +8,7 @@ async function bootstrap() {
     const client = await create({
         session: `${process.env.INSTANCE_ID}`,
         addBrowserArgs: ['--disable-dev-shm-usage'],
+        disableWelcome: true,
         disableSpins: true,
         headless: true,
         logQR: false,

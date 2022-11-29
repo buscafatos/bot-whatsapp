@@ -9,7 +9,7 @@ export class AjudaCommand implements ICommand {
     }
 
     async handle(client: Whatsapp, message: Message) {
-        console.info('AjudaCommand.handle() invoked');
+        console.debug(`[AjudaCommand]:: handle(isGroup: ${message.isGroupMsg}, isForwarded: ${message.isForwarded}, isMedia: ${message.isMedia}, isMMS: ${message.isMMS})`);
 
         await sendLinkPreview(client, message.from, textos.linkBuscaFatos, textos.ajuda1);
         await sendText(client, message.from, textos.ajuda2);

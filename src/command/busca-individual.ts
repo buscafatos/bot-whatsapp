@@ -10,6 +10,8 @@ export class BuscaIndividualCommand implements ICommand {
     }
 
     async handle(client: Whatsapp, message: Message) {
+        console.debug(`[BuscaIndividualCommand]:: handle(isGroup: ${message.isGroupMsg}, isForwarded: ${message.isForwarded}, isMedia: ${message.isMedia}, isMMS: ${message.isMMS})`);
+
         const searchTerm = message.body.replace('/busca', '').trim();
 
         const result = await BuscaFatos.search(searchTerm);

@@ -5,17 +5,24 @@ export class BuscaFatos {
     static urlBuscaFatosApi = process.env.URL_BUSCA_FATOS;
 
     static async search(message: string): Promise<string> {
+        const start = new Date().getTime();
+
         const response = await fetch(`${this.urlBuscaFatosApi}/v1/search/${message}?raw=0`, {
             headers: {
                 "accept": "application/json"
             }
         });
 
+        const duration = (new Date().getTime() - start) / 1000;
+
+        console.debug(`[API Busca Fatos]:: Request Status: ${response.status} ${response.statusText}`);
+        console.debug(`[API Busca Fatos]:: Pesquisado por: "${message}"`);
+
         if (!response.ok) return 'Não consegui realizar a busca neste momento.';
 
         const searchResult = plainToInstance(SearchResult, await response.json());
 
-        console.info(`Pesquisando por: "${message}". Encontrado(s) ${searchResult.totalResults} resultado(s).`);
+        console.debug(`[API Busca Fatos]:: Encontrado(s) ${searchResult.totalResults}. Duração: ${duration}s`);
 
         return this.formatMessage(searchResult);
     }

@@ -11,6 +11,8 @@ export class BuscaGrupoCommand implements ICommand {
     }
 
     async handle(client: Whatsapp, message: Message) {
+        console.debug(`[BuscaGrupoCommand]:: handle(isGroup: ${message.isGroupMsg}, isForwarded: ${message.isForwarded}, isMedia: ${message.isMedia}, isMMS: ${message.isMMS})`);
+
         let searchTerm = message.body.substring(message.body.indexOf(' ')).trim();
         let replyId = message.id;
 
