@@ -1,7 +1,7 @@
 import { textos } from "../messages/messages";
 import { Message, Whatsapp } from "venom-bot";
 import { ICommand } from "./command.interface";
-import { sendLinkPreview, sendText } from "../helpers/message.helper";
+import { sendLinkPreview, sendText } from "../helpers/whatsapp.helper";
 
 export class AjudaCommand implements ICommand {
     canHandle(message: Message) {
