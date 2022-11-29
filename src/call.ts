@@ -1,5 +1,5 @@
 import { Whatsapp } from 'venom-bot';
-import { sendText } from './message';
+import { sendText } from './helpers/message.helper';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function onIncomingCall(client: Whatsapp, call: any) {

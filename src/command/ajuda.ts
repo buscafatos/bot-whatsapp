@@ -9,6 +9,8 @@ export class AjudaCommand implements ICommand {
     }
 
     async handle(client: Whatsapp, message: Message) {
+        console.info('AjudaCommand.handle() invoked');
+
         await sendText(client, message.from, textos.ajuda1);
         await sendText(client, message.from, textos.ajuda2);
     }
