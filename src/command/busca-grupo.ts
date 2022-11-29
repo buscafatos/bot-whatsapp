@@ -5,9 +5,11 @@ import { ICommand } from './command.interface';
 
 export class BuscaGrupoCommand implements ICommand {
     canHandle(message: Message): boolean {
+        const selfTag = `@${message.to.substring(0, message.to.indexOf('@'))}`;
+
         return message.isGroupMsg &&
             message.mentionedJidList.includes(message.to) &&
-            message.body.startsWith(`@${message.to.substring(0, message.to.indexOf('@'))}`);
+            message.body.startsWith(selfTag);
     }
 
     async handle(client: Whatsapp, message: Message) {

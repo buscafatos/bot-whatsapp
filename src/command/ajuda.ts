@@ -5,7 +5,12 @@ import { sendLinkPreview, sendText } from "../helpers/message.helper";
 
 export class AjudaCommand implements ICommand {
     canHandle(message: Message) {
-        return !message.isGroupMsg && message.body.startsWith('/ajuda');
+        const selfTag = `@${message.to.substring(0, message.to.indexOf('@'))}`;
+        const individualHelp = !message.isGroupMsg && message.body.startsWith('/ajuda');
+        const groupHelp = message.mentionedJidList.includes(message.to) &&
+            message.body.startsWith(`${selfTag} /ajuda`);
+
+        return individualHelp || groupHelp;
     }
 
     async handle(client: Whatsapp, message: Message) {
