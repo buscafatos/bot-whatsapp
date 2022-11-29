@@ -1,4 +1,5 @@
 export const textos = {
+    linkBuscaFatos: 'https://buscafatos.com.br/',
     ajuda1: `Bem vindo ao Busca Fatos.\n
 Basta me enviar ou encaminhar uma mensagem que eu farei uma consulta.\n
 Exemplo: urna eletrônica\n
