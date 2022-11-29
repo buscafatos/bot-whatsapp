@@ -1,8 +1,8 @@
 import 'reflect-metadata';
 import { create } from 'venom-bot';
-import { onMessage } from './message';
 import { onIncomingCall } from './call';
 import { onStateChange } from './state';
+import { CommandDispatcher } from './command/command-dispatcher';
 
 async function bootstrap() {
     const client = await create({
@@ -25,7 +25,7 @@ async function bootstrap() {
         client.close();
     });
 
-    client.onMessage(message => onMessage(client, message));
+    client.onAnyMessage(message => CommandDispatcher.dispatch(client, message));
     client.onIncomingCall(call => onIncomingCall(client, call));
     client.onStateChange(state => onStateChange(client, state));
 }
