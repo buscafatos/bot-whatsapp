@@ -1,9 +1,11 @@
 {
+  "watch": ["src"],
   "ignore": [
     ".git",
     "node_modules/**/node_modules",
     "**/test/**",
     "**/docs/**"
   ],
-  "ext": "ts,json"
+  "ext": "ts,json",
+  "delay": 2500
 }
