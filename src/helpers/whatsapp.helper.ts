@@ -23,5 +23,3 @@ export async function reply(client: Whatsapp, to: string, message: string, quote
         console.error(`Erro ao responder a mensagem: ${JSON.stringify(error)}`);
     }
 }
-
-export {};

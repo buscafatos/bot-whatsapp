@@ -1,4 +1,4 @@
-import { sendText } from "../helpers/message.helper";
+import { sendText } from "../helpers/whatsapp.helper";
 import { BuscaFatos } from "../service/busca-fatos";
 import { Message, Whatsapp } from "venom-bot";
 import { ICommand } from "./command.interface";
