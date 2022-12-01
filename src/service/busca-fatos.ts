@@ -22,19 +22,19 @@ export class BuscaFatos {
 
         const searchResult = plainToInstance(SearchResult, await response.json());
 
-        console.debug(`[API Busca Fatos]:: Encontrado(s) ${searchResult.totalResults}. Duração: ${duration}s`);
+        console.debug(`[API Busca Fatos]:: Encontrado(s) ${searchResult.totalResults ?? 0}. Duração: ${duration}s`);
 
         return this.formatMessage(searchResult);
     }
 
     private static formatMessage(searchResult: SearchResult) {
         let reply = `Busca: ${searchResult.searchTerms}\n`;
-        reply += `Total de resultados: ${searchResult.totalResults}\n\n`;
+        reply += `Total de resultados: ${searchResult.totalResults ?? 0}`;
 
-        searchResult.items?.forEach(item => {
-            reply += `${item.title}\n`;
+        searchResult.items?.slice(0, 5).forEach(item => {
+            reply += `\n\n${item.title}\n`;
             reply += `Link: ${item.link}\n`;
-            reply += `Fonte: ${item.source}\n\n`;
+            reply += `Fonte: ${item.source}`;
         });
 
         return reply;
