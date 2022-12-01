@@ -2,14 +2,11 @@ import { reply } from "../helpers/whatsapp.helper";
 import { BuscaFatos } from "../service/busca-fatos";
 import { Message, Whatsapp } from "venom-bot";
 import { ICommand } from './command.interface';
+import { isSelfTagged } from "../helpers/message.helper";
 
 export class BuscaGrupoCommand implements ICommand {
     canHandle(message: Message): boolean {
-        const selfTag = `@${message.to.substring(0, message.to.indexOf('@'))}`;
-
-        return message.isGroupMsg &&
-            message.mentionedJidList.includes(message.to) &&
-            message.body.startsWith(selfTag);
+        return message.isGroupMsg && isSelfTagged(message);
     }
 
     async handle(client: Whatsapp, message: Message) {
@@ -18,11 +15,13 @@ export class BuscaGrupoCommand implements ICommand {
         let searchTerm = message.body.substring(message.body.indexOf(' ')).trim();
         let replyId = message.id;
 
-        if (message.quotedMsgObj) {
-            const quotedMessage = await client.getMessageById(message.chat.lastReceivedKey._serialized);
+        const quotedMessage = await client.returnReply(message) as Message;
 
-            searchTerm = quotedMessage.body;
-            replyId = quotedMessage.id;
+        if (quotedMessage) {
+            searchTerm = quotedMessage?.body;
+            //TODO: resolver como fazer o reply de uma mensagem em grupo que foi citada
+            //O id da mensagem citada não é retornado
+            replyId = quotedMessage?.id;
         }
 
         const result = await BuscaFatos.search(searchTerm);
