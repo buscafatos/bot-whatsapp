@@ -23,7 +23,7 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
 #Copia os arquivos compilados e necessários
-COPY --from=builder /workspace/dist .
+COPY --from=builder /workspace/dist ./dist
 COPY package.json yarn.lock ./
 
 #Instala somente as dependências de produção
