@@ -10,7 +10,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN yarn install --prod
+RUN yarn install
 RUN yarn build
 
 RUN rm -rf src/

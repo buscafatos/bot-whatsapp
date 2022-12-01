@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "dotenv": "^16.0.3",
     "eslint": "^8.0.1",
     "eslint-config-standard-with-typescript": "^23.0.0",
     "eslint-plugin-import": "^2.25.2",
@@ -27,8 +28,8 @@
     "lint": "eslint src/**/*.ts",
     "lint:fix": "yarn lint --fix",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/app.ts",
-    "debug": "ts-node src/app.ts",
+    "dev": "nodemon -r dotenv/config src/app.ts",
+    "debug": "ts-node -r dotenv/config src/app.ts",
     "build": "yarn lint && rimraf dist/ && tsc",
     "start": "yarn build && node dist/app.js",
     "docker:build": "docker build -t buscafatos/bot-whatsapp .",
