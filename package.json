@@ -9,7 +9,7 @@
   "dependencies": {
     "class-transformer": "^0.5.1",
     "reflect-metadata": "^0.1.13",
-    "venom-bot": "4.3.3"
+    "venom-bot": "4.3.7"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.0.0",
