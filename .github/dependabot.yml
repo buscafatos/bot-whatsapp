@@ -10,9 +10,8 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
-
-# Enable version updates for docker
-- package-ecosystem: "docker"
+  # Enable version updates for docker
+  - package-ecosystem: "docker"
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
