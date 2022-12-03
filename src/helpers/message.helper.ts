@@ -1,5 +1,4 @@
-// import { Message } from 'venom-bot';
-import { Message } from 'venom-bot/dist/api/model/message';
+import { Message } from '@wppconnect-team/wppconnect';
 
 export function isSelfTagged(message: Message): boolean {
     const selfTag = `@${message.to.substring(0, message.to.indexOf('@'))}`;

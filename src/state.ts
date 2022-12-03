@@ -1,4 +1,4 @@
-import { Whatsapp, SocketState } from 'venom-bot';
+import { Whatsapp, SocketState } from '@wppconnect-team/wppconnect';
 
 export function onStateChange(client: Whatsapp, state: SocketState) {
     console.log(`Status alterado: ${JSON.stringify(state)}`);

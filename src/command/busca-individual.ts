@@ -1,6 +1,5 @@
-import { sendText } from "../helpers/whatsapp.helper";
 import { BuscaFatos } from "../service/busca-fatos";
-import { Message, Whatsapp } from "venom-bot";
+import { Message, Whatsapp } from '@wppconnect-team/wppconnect';
 import { ICommand } from "./command.interface";
 
 export class BuscaIndividualCommand implements ICommand {
@@ -16,6 +15,6 @@ export class BuscaIndividualCommand implements ICommand {
 
         const result = await BuscaFatos.search(searchTerm);
 
-        return sendText(client, message.from, result);
+        return client.sendText(message.from, result);
     }
 }

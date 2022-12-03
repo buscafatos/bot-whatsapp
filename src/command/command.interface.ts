@@ -1,4 +1,4 @@
-import { Message, Whatsapp } from "venom-bot";
+import { Message, Whatsapp } from '@wppconnect-team/wppconnect';
 
 export interface ICommand {
     canHandle(message: Message): boolean;

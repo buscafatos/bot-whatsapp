@@ -1,7 +1,6 @@
 import { textos } from "../messages/messages";
-import { Message, Whatsapp } from "venom-bot";
+import { Message, Whatsapp } from '@wppconnect-team/wppconnect';
 import { ICommand } from "./command.interface";
-import { sendLinkPreview, sendText } from "../helpers/whatsapp.helper";
 
 export class AjudaCommand implements ICommand {
     canHandle(message: Message) {
@@ -16,7 +15,7 @@ export class AjudaCommand implements ICommand {
     async handle(client: Whatsapp, message: Message) {
         console.debug(`[AjudaCommand]:: handle(isGroup: ${message.isGroupMsg}, isForwarded: ${message.isForwarded}, isMedia: ${message.isMedia}, isMMS: ${message.isMMS})`);
 
-        await sendLinkPreview(client, message.from, textos.linkBuscaFatos, textos.ajuda1);
-        await sendText(client, message.from, textos.ajuda2);
+        await client.sendText(message.from, textos.ajuda1, { linkPreview: true });
+        await client.sendText(message.from, textos.ajuda2);
     }
 }

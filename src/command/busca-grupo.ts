@@ -1,6 +1,5 @@
-import { reply } from "../helpers/whatsapp.helper";
 import { BuscaFatos } from "../service/busca-fatos";
-import { Message, Whatsapp } from "venom-bot";
+import { Message, Whatsapp } from '@wppconnect-team/wppconnect';
 import { ICommand } from './command.interface';
 import { isSelfTagged } from "../helpers/message.helper";
 
@@ -12,20 +11,18 @@ export class BuscaGrupoCommand implements ICommand {
     async handle(client: Whatsapp, message: Message) {
         console.debug(`[BuscaGrupoCommand]:: handle(isGroup: ${message.isGroupMsg}, isForwarded: ${message.isForwarded}, isMedia: ${message.isMedia}, isMMS: ${message.isMMS})`);
 
-        let searchTerm = message.body.substring(message.body.indexOf(' ')).trim();
-        let replyId = message.id;
+        let searchTerm = message.body.substring(message.body.indexOf(' ')).trim(); //Remove the @tag from the message
+        let replyTo = message.id;
 
-        const quotedMessage = await client.returnReply(message) as Message;
+        if (message.quotedMsgId) {
+            const quotedMessage = await client.getMessageById(message.quotedMsgId);
 
-        if (quotedMessage) {
-            searchTerm = quotedMessage?.body;
-            //TODO: resolver como fazer o reply de uma mensagem em grupo que foi citada
-            //O id da mensagem citada não é retornado
-            replyId = quotedMessage?.id;
+            searchTerm = quotedMessage.body;
+            replyTo = quotedMessage.id;
         }
 
         const result = await BuscaFatos.search(searchTerm);
 
-        return reply(client, message.chatId, result, replyId);
+        return client.sendText(message.chatId, result, { quotedMsg: replyTo });
     }
 }

@@ -1,15 +1,15 @@
 import 'reflect-metadata';
-import { create } from 'venom-bot';
+import { create } from '@wppconnect-team/wppconnect';
 import { onIncomingCall } from './call';
 import { onStateChange } from './state';
 import { CommandDispatcher } from './command/command-dispatcher';
+import { puppeteerConfig } from './config/puppeteer.config';
 
 async function bootstrap() {
     const client = await create({
         session: `${process.env.INSTANCE_ID}`,
-        addBrowserArgs: ['--disable-dev-shm-usage'],
+        browserArgs: puppeteerConfig,
         disableWelcome: true,
-        disableSpins: true,
         headless: true,
         logQR: false,
         catchQR: (qrCode, asciiQR, attempt, urlCode) => {
@@ -26,7 +26,7 @@ async function bootstrap() {
         client.close();
     });
 
-    client.onAnyMessage(message => CommandDispatcher.dispatch(client, message));
+    client.onMessage(message => CommandDispatcher.dispatch(client, message));
     client.onIncomingCall(call => onIncomingCall(client, call));
     client.onStateChange(state => onStateChange(client, state));
 }
