@@ -7,7 +7,7 @@
   "author": "Busca Fatos <contato@buscafatos.com.br> (https://buscafatos.com.br/)",
   "license": "MIT",
   "dependencies": {
-    "@wppconnect-team/wppconnect": "^1.19.1",
+    "@wppconnect-team/wppconnect": "^1.20.0",
     "@wppconnect/wa-js": "^2.16.3",
     "class-transformer": "^0.5.1",
     "reflect-metadata": "^0.1.13"
