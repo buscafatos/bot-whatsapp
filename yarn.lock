@@ -318,10 +318,10 @@
   optionalDependencies:
     fsevents "^2.3.2"
 
-"@wppconnect/wa-js@^2.15.2", "@wppconnect/wa-js@^2.16.3":
-  version "2.16.3"
-  resolved "https://registry.yarnpkg.com/@wppconnect/wa-js/-/wa-js-2.16.3.tgz#dc94b48e3fac6362694f006c5deb3e63bf340809"
-  integrity sha512-7LyX1jyNJkPwL3KQXGCKeVmQUrH7b4Nq9e2Kg431NYYO0Y+k4QfDWuv/BM+voLpjb3klad4+tajmQU3j6KLfXg==
+"@wppconnect/wa-js@^2.15.2", "@wppconnect/wa-js@^2.18.3":
+  version "2.18.3"
+  resolved "https://registry.yarnpkg.com/@wppconnect/wa-js/-/wa-js-2.18.3.tgz#42241642655afb6a62fcbf25b6929d75cb339454"
+  integrity sha512-WWtx1noiLR9b1klSJt9u4NWIrMFG8y5QLGTrdTzMGomoFReQ1UGbTxtifnlmcbzQraCzK5pMKULJ0iDJqAloIQ==
 
 "@wppconnect/wa-version@^1.1.197":
   version "1.1.204"
